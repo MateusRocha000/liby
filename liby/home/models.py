@@ -10,3 +10,14 @@ class Usuario(models.Models):
 	cidade = models.CharField(max_length=50)
 	estado = models.CharField(max_length=2)
 	foto = models.ImageField()
+
+class Livro(models.Models):
+	ISBN = models.CharField(max_length=20)
+	titulo = models.CharField(max_length=20)
+	autor = models.CharField(max_length=20)
+	edicao = models.CharField(max_length=20)
+	estado= models.CharField(max_length=20)
+
+	 estado_opcoes = (
+	 	(,)
+	 )
