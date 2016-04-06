@@ -16,8 +16,15 @@ class Livro(models.Models):
 	titulo = models.CharField(max_length=20)
 	autor = models.CharField(max_length=20)
 	edicao = models.CharField(max_length=20)
-	estado= models.CharField(max_length=20)
 
-	 estado_opcoes = (
-	 	(,)
+	NOVO = '***'
+	BOM = '**'
+	RUIM = '*'
+
+	 ESTADO_OPCOES = (
+	 	(NOVO,'novo'),
+	 	(BOM,'bom'),
+	 	(ruim,'ruim')
 	 )
+
+	 estado = models.CharField(max_length=3,opcoes=ESTADO_OPCOES, defaut=BOM)
