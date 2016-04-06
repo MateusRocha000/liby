@@ -17,14 +17,14 @@ class Livro(models.Models):
 	autor = models.CharField(max_length=20)
 	edicao = models.CharField(max_length=20)
 
-	NOVO = '***'
-	BOM = '**'
-	RUIM = '*'
+	NOVO = '3'
+	BOM = '2'
+	RUIM = '1'
 
 	 ESTADO_OPCOES = (
 	 	(NOVO,'novo'),
 	 	(BOM,'bom'),
-	 	(ruim,'ruim')
+	 	(RUIM,'ruim')
 	 )
 
-	 estado = models.CharField(max_length=3,opcoes=ESTADO_OPCOES, defaut=BOM)
+	 estado = models.CharField(max_length=1,opcoes=ESTADO_OPCOES, default=BOM)
