@@ -36,3 +36,12 @@ class Mensagem(models.Models):
     destinatario = models.Foreign(Usuario)	 
     remetente = models.Foreign(Usuario)
     transacao = models.Foreign(Transacao)
+
+class Transacao(models.Model):
+	livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
+	usuarioSolicitante = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+	concluida = models.BooleanField(default=False)
+	avaliacaoDono = models.TextField()
+	avaliacaoSolicitante = models.TextField()
+	notaDono = models.IntegerField()
+	notaSolicitante = models.IntegerField()
