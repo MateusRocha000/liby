@@ -9,7 +9,10 @@ class Usuario(models.Models):
 	email = models.EmailField()
 	cidade = models.CharField(max_length=50)
 	estado = models.CharField(max_length=2)
-	foto = models.ImageField()	
+	foto = models.ImageField()
+
+	def __str__(self):
+		return self.usuario
 
 class Livro(models.Models):
 	ISBN = models.CharField(max_length=20)
@@ -30,12 +33,19 @@ class Livro(models.Models):
 
 	estado = models.CharField(max_length=1,opcoes=ESTADO_OPCOES, default=BOM)
 
+	def __str__(self):
+		return self.titulo
+
+
 class Mensagem(models.Models):
     data = models.DateField(auto_now_add=True)
     conteudo = models.TextField()
     destinatario = models.Foreign(Usuario)	 
     remetente = models.Foreign(Usuario)
     transacao = models.Foreign(Transacao)
+
+	def __str__(self):
+		return self.conteudo
 
 class Transacao(models.Model):
 	livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
