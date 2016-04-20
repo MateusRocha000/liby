@@ -1,0 +1,60 @@
+@import url(https://fonts.googleapis.com/css?family=Ubuntu);
+
+.center-fix {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.home-bg { 
+  background: url('./../img/bg.jpg') no-repeat center center fixed; 
+  background-size: cover;
+}
+
+.bg {
+	background-color: rgba(0,0,0,0.5);
+	border-radius: 5px;
+	color: white;
+}
+
+.btn-facebook {
+	background-color: #3B5998;
+	color: #FFF;
+	border: none;
+}
+
+.btn-facebook:hover {
+	background-color: #2B4988;
+	color: #FFF;
+	border: none;
+}
+
+/*home*/
+
+.perfil > img {
+	width: 50px;
+}
+
+.book {
+	margin-bottom: 15px;
+}
+
+.book:not(:first-child) {
+	padding-top: 15px;
+	border-top: 1px solid #CCC;
+}
+
+.capa > img {
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+.descricao > h3 {
+	margin-top: 0;
+}
+
+.descricao > p {
+	text-align: justify;
+}
+
