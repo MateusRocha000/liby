@@ -1,5 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Ubuntu);
 
+body {
+	margin-bottom: 100px;
+}
+
+/*index*/
 .center-fix {
   position: absolute;
   top: 50%;
@@ -32,17 +37,9 @@
 
 /*home*/
 
-.perfil > img {
-	width: 50px;
-}
-
 .book {
+	padding-bottom: 15px;
 	margin-bottom: 15px;
-}
-
-.book:not(:first-child) {
-	padding-top: 15px;
-	border-top: 1px solid #CCC;
 }
 
 .capa > img {
@@ -58,3 +55,40 @@
 	text-align: justify;
 }
 
+/*livro*/
+
+.home-livro {
+	text-decoration: none; 
+	color: #5f5f5f;
+}
+
+.home-livro > img{
+	width: 100%;
+}
+
+.home-livro > h5 {
+	text-align: center;
+}
+
+.usuario {
+	position: relative;
+}
+
+.usuario > img {
+	position: absolute;
+	left: 0;
+}
+
+.usuario > div {
+	position: absolute;
+	left: 60px;
+}
+
+.usuario h5 {
+	margin-top: 5px;
+	font-weight: bold;
+}
+
+.sub-item {
+	background-color: #f9f9f9;
+}
