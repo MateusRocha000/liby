@@ -10,12 +10,18 @@ class Perfil(models.Model):
 	def __str__(self):
 		return self.nome
 
-# class Livro(models.Model):
+class Livro(models.Model):
+	titulo = models.CharField(max_length=100)
+	autor  = models.CharField(max_length=100)
+	capa   = models.CharField(max_length=100)
+	descricao = models.TextField()
+	dono = models.ForeignKey(Perfil, on_delete=models.CASCADE)
+
+	def __str__(self):
+		return self.titulo + ' by ' + self.autor
+
 # 	ISBN = models.CharField(max_length=20)
-# 	titulo = models.CharField(max_length=20)
-# 	autor = models.CharField(max_length=20)
 # 	edicao = models.CharField(max_length=20)
-# 	dono = models.ForeignKey(Usuario)
 
 # 	NOVO = '3'
 # 	BOM = '2'
@@ -29,8 +35,6 @@ class Perfil(models.Model):
 
 # 	estado = models.CharField(max_length=1, choices=ESTADO_OPCOES, default=BOM)
 
-# 	def __str__(self):
-# 		return self.titulo
 
 # class Transacao(models.Model):
 # 	livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
