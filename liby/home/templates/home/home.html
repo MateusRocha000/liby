@@ -15,13 +15,23 @@
 			</div>
 		{% endif %}
 
-		{% for livro in livros %}
-			<div class="col-sm-2 livro">
-				<a href="/livros/{{ livro.id }}" class="home-livro">
-					<img src="{{ livros.capa }}" alt="">
-					<h5>{{ livro.titulo }}</h5>
-				</a>
+		{% for livro in livros %}		
+
+			<div class="col-sm-4 livro">				
+				<a href="/livros/{{livro.id }}" class="home-livro">
+					<img src="{{livro.capa}}" alt="">
+				</a>											
+				<h3>{{ livro.titulo }}</h3>
+				<h6>por <b>{{ livro.autor}}</b></h6>
+				<h6>de <b>{{ livro.dono.nome }}</b></h6>
+				<h6>Edição: {{ livro.edicao }}</h6>
+				<h6>Adicionado em {{ livro.data }}</h6>
+				<a href="#" class="btn btn-default btn-block">Pegar</a>
+				</br>
+				
 			</div>
-		{% endfor %}	
+
+		{% endfor %}
+
 	</div>
 {% endblock pagina %}
