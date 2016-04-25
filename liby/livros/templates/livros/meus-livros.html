@@ -1,27 +1,28 @@
 {% extends "base.html" %}
 
 {% block title %}
-	Home
+	Meus Livros
 {% endblock title %}
 
 {% block pagina %}
 	<h3 class="page-header">
-		Recém Adicionados
+		Meus Livros
 	</h3>
 	<div class="row">
-		{% if not livros %}
-			<div class="col-xs-12">
-				<p>Ainda não foram adicionados livros.</p>
-			</div>
-		{% endif %}
+		<div class="col-sm-2 livro">
+			<a href="/livros/adicionar" class="home-livro">
+				<img src="/static/assets/img/book-cover-blank.jpg" alt="">
+				<h5>Adicionar</h5>
+			</a>
+		</div>
 
 		{% for livro in livros %}
 			<div class="col-sm-2 livro">
 				<a href="/livros/{{ livro.id }}" class="home-livro">
-					<img src="{{ livros.capa }}" alt="">
+					<img src="{{ livro.capa }}" alt="">
 					<h5>{{ livro.titulo }}</h5>
 				</a>
 			</div>
-		{% endfor %}	
+		{% endfor %}
 	</div>
 {% endblock pagina %}
