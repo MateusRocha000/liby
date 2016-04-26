@@ -31,3 +31,29 @@ def adicionar(request):
 		return redirect('/livros/meus-livros/')
 
 	return render(request, 'livros/adicionar.html')
+
+@login_required
+def buscar(request):
+
+	if request.method == 'POST':
+		titulo = request.POST['titulo']
+		autor = request.POST['autor']
+
+		livros = None
+
+		if titulo:
+			livros = Livro.objects.filter(titulo__contains=titulo)
+
+		if autor:
+			if livros:
+				livros &= Livro.objects.filter(autor__contains=autor)
+			else:
+				livros = Livro.objects.filter(autor__contains=autor)
+
+		context = {
+			'livros' : livros
+		}
+
+		return render(request, 'livros/buscar.html', context)
+
+	return render(request, 'livros/buscar.html')
