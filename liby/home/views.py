@@ -14,14 +14,7 @@ def logout(request):
 
 @login_required
 def home(request):
-	return render(request, 'home/home.html')
-
-def books(request):
-	a = len(Livro.objects.all())
-	b = 0
-	if a > 10:
-		b = a - 10
 	context = {
-		'livros' : Livro.objects.all()[b::]
+		'livros' : Livro.objects.all().order_by('-data')[:8]
 	}
 	return render(request, 'home/home.html', context)
