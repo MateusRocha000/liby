@@ -10,7 +10,10 @@ def livros(request):
 
 @login_required
 def meusLivros(request):
-	return render(request, 'livros/meus-livros.html')
+	context = {
+		'livros' : Livro.objects.filter(dono=request.user.perfil)
+	}
+	return render(request, 'livros/meus-livros.html', context)
 
 @login_required
 def adicionar(request):
