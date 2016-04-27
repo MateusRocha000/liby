@@ -26,6 +26,27 @@
 			<label for="descricao">Descrição</label>
 			<textarea class="form-control" id="descricao" name="descricao" placeholder="Descrição" rows="3"></textarea>
 		</div>
+		<div class="form-group">
+			<label for="isbn">ISBN</label>
+			<input type="text" class="form-control" id="isbn" name="isbn" placeholder="ISBN">
+		</div>
+		<div class="form-group">
+			<label for="edicao">Edição</label>
+			<input type="text" class="form-control" id="edicao" name="edicao" placeholder="Edição">
+		</div>
+		<div class="form-group">
+			<label for="editora">Editora</label>
+			<input type="text" class="form-control" id="editora" name="editora" placeholder="Editora">
+		</div>
+		<div class="form-group">
+			<label for="editora">Estado de Conservação</label>
+			<select class="form-control" name="estado" id="estado">
+				<option disabled selected>Selecione o estado do livro</option>
+				<option value="0">Ruim</option>
+				<option value="1">Bom</option>
+				<option value="2">Novo</option>
+			</select>
+		</div>
 		<button type="submit" class="btn btn-default">Adicionar</button>
 	</form>
 {% endblock pagina %}

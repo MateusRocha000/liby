@@ -11,18 +11,20 @@ class Perfil(models.Model):
 		return self.nome
 
 class Livro(models.Model):
-	ISBN = models.CharField(max_length=20)
 	titulo = models.CharField(max_length=100)
 	autor = models.CharField(max_length=100)
 	capa  = models.CharField(max_length=100, default='/static/assets/img/book-no-cover.jpg')
-	edicao = models.CharField(max_length=20)
-	data = models.DateField(auto_now_add=True)
 	descricao = models.TextField()
+	data = models.DateField(auto_now_add=True)
+
+	ISBN = models.CharField(max_length=20)
+	edicao = models.CharField(max_length=20)
+	editora = models.CharField(max_length=20)
 	dono = models.ForeignKey(Perfil)	
 
-	NOVO = '3'
-	BOM = '2'
 	RUIM = '1'
+	BOM  = '2'
+	NOVO = '3'
 
 	ESTADO_OPCOES = (
  		(NOVO,'novo'),

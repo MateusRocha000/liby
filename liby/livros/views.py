@@ -25,10 +25,25 @@ def adicionar(request):
 		l = Livro()
 		l.titulo = request.POST['titulo']
 		l.autor = request.POST['autor']
+
 		if request.POST['capa']:
 			l.capa = request.POST['capa']
+		
 		if request.POST['descricao']:
 			l.descricao = request.POST['descricao']
+
+		if request.POST['isbn']:
+			l.isbn = request.POST['isbn']
+
+		if request.POST['edicao']:
+			l.edicao = request.POST['edicao']
+		
+		if request.POST['editora']:
+			l.editora = request.POST['editora']
+
+		if request.POST['estado']:
+			l.estado = request.POST['estado']
+
 		l.dono = request.user.perfil
 
 		l.save()

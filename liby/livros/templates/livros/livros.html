@@ -12,8 +12,8 @@
 		{% for livro in livros %}
 			<div class="col-sm-2 livro">
 				<a href="/livros/{{ livro.id }}" class="home-livro">
-					<img src="{{ livro.capa }}" alt="">
-					<h5>{{ livro.titulo }}</h5>
+					<img src="{{ livro.capa }}" style="height: 180px;">
+					<h5>{{ livro.titulo | title }}</h5>
 				</a>
 			</div>
 		{% endfor %}

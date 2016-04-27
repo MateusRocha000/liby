@@ -17,14 +17,13 @@
 
 		{% for livro in livros %}		
 
-			<div class="col-sm-4 livro">				
+			<div class="col-xs-6 col-sm-3 livro">				
 				<a href="/livros/{{livro.id }}" class="home-livro">
-					<img src="{{livro.capa}}" alt="">
+					<img src="{{livro.capa}}" style="height: 286px;">
 				</a>											
-				<h3>{{ livro.titulo }}</h3>
+				<!--<h3>{{ livro.titulo }}</h3>-->
 				<h6>por <b>{{ livro.autor}}</b></h6>
 				<h6>de <b>{{ livro.dono.nome }}</b></h6>
-				<h6>Edição: {{ livro.edicao }}</h6>
 				<h6>Adicionado em {{ livro.data }}</h6>
 				<a href="#" class="btn btn-default btn-block">Pegar</a>
 				</br>
