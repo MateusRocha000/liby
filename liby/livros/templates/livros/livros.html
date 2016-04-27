@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Livros
+{% endblock title %}
+
+{% block pagina %}
+	<h3 class="page-header">
+		Livros
+	</h3>
+	<div class="row">
+		{% for livro in livros %}
+			<div class="col-sm-2 livro">
+				<a href="/livros/{{ livro.id }}" class="home-livro">
+					<img src="{{ livro.capa }}" alt="">
+					<h5>{{ livro.titulo }}</h5>
+				</a>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock pagina %}

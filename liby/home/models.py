@@ -14,7 +14,7 @@ class Livro(models.Model):
 	ISBN = models.CharField(max_length=20)
 	titulo = models.CharField(max_length=100)
 	autor = models.CharField(max_length=100)
-	capa  = models.CharField(max_length=100)
+	capa  = models.CharField(max_length=100, default='/static/assets/img/book-no-cover.jpg')
 	edicao = models.CharField(max_length=20)
 	data = models.DateField(auto_now_add=True)
 	descricao = models.TextField()

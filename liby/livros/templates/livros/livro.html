@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Livros - Livro
+{% endblock title %}
+
+{% block pagina %}
+	<h3 class="page-header">
+		Livro
+	</h3>
+	<div class="row book">
+		<div class="col-xs-4 col-md-3 capa">
+			<img src="{{ livro.capa }}" alt="">
+		</div>
+		<div class="col-xs-8 col-md-9 descricao">
+			<h3>{{ livro.titulo }}</h3>
+			<h6>por <b>{{ livro.autor }}</b></h6>
+
+			<p>{{ livro.descricao }}</p>
+		</div>
+	</div>
+
+	<h3 class="page-header">
+		Usuários que possuem o livro
+	</h3>
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="usuario">
+				<img src="{{ livro.dono.foto }}" alt="">
+				<div class="">
+					<h5>{{ livro.dono.nome }}</h5>
+					<h6>{{ livro.dono.cidade }}</h6>
+					<a href="#" class="btn btn-xs btn-default btn-block">Pegar</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock pagina %}
