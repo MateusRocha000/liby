@@ -11,6 +11,18 @@
 	<div class="row book">
 		<div class="col-xs-4 col-md-3 capa">
 			<img src="{{ livro.capa }}" alt="">
+			<br>
+
+			{% if user.perfil == livro.dono %}
+				<div class="row">
+					<div class="col-xs-6">
+						<a href="/livros/editar/{{ livro.id }}" class="btn btn-block btn-info">Editar</a>
+					</div>
+					<div class="col-xs-6">
+						<a href="/livros/excluir/{{ livro.id }}" class="btn btn-block btn-danger">Excluir</a>
+					</div>
+				</div>
+			{% endif %}
 		</div>
 		<div class="col-xs-8 col-md-9 descricao">
 			<h3>{{ livro.titulo }}</h3>

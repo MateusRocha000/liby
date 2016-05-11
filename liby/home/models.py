@@ -10,6 +10,9 @@ class Perfil(models.Model):
 	def __str__(self):
 		return self.nome
 
+	def meusLivros(self):
+		return self.livros.all()
+
 class Livro(models.Model):
 	titulo = models.CharField(max_length=100)
 	autor = models.CharField(max_length=100)
@@ -20,7 +23,7 @@ class Livro(models.Model):
 	ISBN = models.CharField(max_length=20)
 	edicao = models.CharField(max_length=20)
 	editora = models.CharField(max_length=20)
-	dono = models.ForeignKey(Perfil)	
+	dono = models.ForeignKey(Perfil, related_name="livros")
 
 	RUIM = '1'
 	BOM  = '2'

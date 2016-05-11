@@ -3,6 +3,7 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from home.models import *
+from .controllers import *
 
 @login_required
 def livros(request):
@@ -15,42 +16,30 @@ def livros(request):
 @login_required
 def meusLivros(request):
 	context = {
-		'livros' : Livro.objects.filter(dono=request.user.perfil)
+		'livros' : request.user.perfil.meusLivros(),
 	}
 	return render(request, 'livros/meus-livros.html', context)
 
 @login_required
 def adicionar(request):
 	if request.method == 'POST':
-		l = Livro()
-		l.titulo = request.POST['titulo']
-		l.autor = request.POST['autor']
+		titulo = request.POST['titulo']
+		autor = request.POST['autor']
+		capa = request.POST['capa']
+		descricao = request.POST['descricao']
+		isbn = request.POST['isbn']
+		edicao = request.POST['edicao']
+		editora = request.POST['editora']
+		estado = request.POST['estado']
+		dono = request.user.perfil
 
-		if request.POST['capa']:
-			l.capa = request.POST['capa']
-		
-		if request.POST['descricao']:
-			l.descricao = request.POST['descricao']
-
-		if request.POST['isbn']:
-			l.isbn = request.POST['isbn']
-
-		if request.POST['edicao']:
-			l.edicao = request.POST['edicao']
-		
-		if request.POST['editora']:
-			l.editora = request.POST['editora']
-
-		if request.POST['estado']:
-			l.estado = request.POST['estado']
-
-		l.dono = request.user.perfil
-
-		l.save()
+		l = adicionarLivro(dono, titulo, autor, capa, descricao, isbn, edicao, editora, estado)
 
 		return redirect('/livros/meus-livros/')
 
 	return render(request, 'livros/adicionar.html')
+
+
 
 @login_required
 def buscar(request):
@@ -58,19 +47,8 @@ def buscar(request):
 		titulo = request.POST['titulo']
 		autor = request.POST['autor']
 
-		livros = None
-
-		if titulo:
-			livros = Livro.objects.filter(titulo__contains=titulo)
-
-		if autor:
-			if livros:
-				livros &= Livro.objects.filter(autor__contains=autor)
-			else:
-				livros = Livro.objects.filter(autor__contains=autor)
-
 		context = {
-			'livros' : livros
+			'livros' : buscarLivro(titulo, autor),
 		}
 
 		return render(request, 'livros/buscar.html', context)
@@ -85,3 +63,14 @@ def livro(request, livro_id):
 	}
 
 	return render(request, 'livros/livro.html', context)
+
+@login_required
+def excluir(request, livro_id):
+	Livro.objects.get(id=livro_id).delete()
+	
+	return redirect('/livros/meus-livros')
+
+
+@login_required
+def editar(request, livro_id):
+	pass
