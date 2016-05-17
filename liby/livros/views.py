@@ -55,6 +55,19 @@ def buscar(request):
 
 	return render(request, 'livros/buscar.html')
 
+@login_required
+def buscarisbn(request):
+	if request.method == 'POST':
+		isbn = request.POST['isbn']
+
+		context = {
+			'livros' : buscarISBN(isbn),
+		}
+
+		return render(request, 'livros/buscarisbn.html', context)
+
+	return render(request, 'livros/buscarisbn.html')
+
 
 @login_required
 def livro(request, livro_id):

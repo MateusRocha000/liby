@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Livros - Buscar
+{% endblock title %}
+
+{% block pagina %}
+	<h3 class="page-header">
+		Buscar Livro pelo ISBN
+	</h3>
+	<form action="/livros/buscarisbn/" method="POST">
+		{% csrf_token %}
+		<div class="form-group">
+			<label for="isbn">ISBN</label>
+			<input type="text" class="form-control" name="isbn" id="isbn" placeholder="ISBN">
+		</div>
+		<button type="submit" class="btn btn-default">Buscar</button>
+	</form>
+
+	<h3 class="page-header">
+		Resultados
+	</h3>
+
+	<div class="row">
+	{% for livro in livros %}
+		<div class="col-xs-6 col-sm-3 col-md-3 livro">
+			<a href="/livros/{{ livro.id }}" class="home-livro">
+				<img src="{{ livro.capa }}" alt="">
+				<h5><b>{{ livro.titulo }}</b></h5>
+				<h5>Dono: {{ livro.dono.nome }}</h5>
+			</a>
+		</div>
+	{% endfor %}
+
+	</div>
+{% endblock pagina %}

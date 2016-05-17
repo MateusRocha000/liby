@@ -1,4 +1,5 @@
 from home.models import *
+from isbnlib import *
 
 def buscarLivro(titulo='', autor=''):
 	livros = None
@@ -11,6 +12,15 @@ def buscarLivro(titulo='', autor=''):
 			livros &= Livro.objects.filter(autor__contains=autor)
 		else:
 			livros = Livro.objects.filter(autor__contains=autor)
+
+	return livros
+
+def buscarISBN(isbn=''):
+	livros = None
+	
+	if isbn:				
+		livros = Livro.objects.filter(ISBN__contains=isbn)
+
 
 	return livros
 
