@@ -1,5 +1,5 @@
 from home.models import *
-from isbnlib import *
+# from isbnlib import *
 
 def buscarLivro(titulo='', autor=''):
 	livros = None
@@ -24,30 +24,15 @@ def buscarISBN(isbn=''):
 
 	return livros
 
-def adicionarLivro(dono, titulo, autor, capa='', descricao='', isbn='', edicao='', editora='', estado=''):
-	l = Livro()
-	l.dono = dono
-	l.titulo = titulo
-	l.autor = autor
-
-	if descricao:
-		l.descricao = descricao
-
-	if isbn:
-		l.isbn = isbn
-	
-	if edicao:
-		l.edicao = edicao
-
-	if capa:
-		l.capa = capa
-		
-	if editora:
-		l.editora = editora		
-	
-	if estado:
-		l.estado = estado
-		
-	l.save()
-
+def adicionarLivro(request):
+	l = Livro.objects.create(titulo=request.POST['titulo'],
+							 autor=request.POST['autor'],
+							 capa=request.POST['capa'],
+							 descricao=request.POST['descricao'],
+							 ISBN=request.POST['isbn'],
+							 edicao=request.POST['edicao'],
+							 editora=request.POST['editora'],
+							 estado=request.POST['estado'],
+							 dono=request.user.perfil
+							 )
 	return l

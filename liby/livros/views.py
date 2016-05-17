@@ -23,18 +23,7 @@ def meusLivros(request):
 @login_required
 def adicionar(request):
 	if request.method == 'POST':
-		titulo = request.POST['titulo']
-		autor = request.POST['autor']
-		capa = request.POST['capa']
-		descricao = request.POST['descricao']
-		isbn = request.POST['isbn']
-		edicao = request.POST['edicao']
-		editora = request.POST['editora']
-		estado = request.POST['estado']
-		dono = request.user.perfil
-
-		l = adicionarLivro(dono, titulo, autor, capa, descricao, isbn, edicao, editora, estado)
-
+		l = adicionarLivro(request)
 		return redirect('/livros/meus-livros/')
 
 	return render(request, 'livros/adicionar.html')

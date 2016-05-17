@@ -19,9 +19,21 @@ class LivrosMethodTests(TestCase):
     	self.assertNotIn(self.l, buscarLivro('outrolivro'))
 
     def test_pesquisar_isbn(self):
-        self.assertIn(self.l, buscarLivro('9788598078373'))
-        self.assertNotIn(self.l, buscarLivro('000001'))
+        self.assertIn(self.l, buscarISBN('9788598078373'))
+        self.assertNotIn(self.l, buscarISBN('000001'))
 
     def test_adicionar_livro(self):
-    	l = adicionarLivro(dono=self.p, titulo="O guia do mochileiro", autor="Douglas Adams")
-    	self.assertIn(l, self.p.meusLivros())
+        request = type('test', (object,), {'POST' : {}, 'user' : self.u})()
+        request.POST = {
+            'titulo' : "O guia do mochileiro",
+            'autor' : "Douglas Adams",
+            'capa': '',
+            'descricao': '',
+            'isbn': '',
+            'editora': '',
+            'edicao': '',
+            'estado': '',
+        }
+
+        l = adicionarLivro(request)
+        self.assertIn(l, self.p.meusLivros())
