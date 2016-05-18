@@ -68,11 +68,20 @@ def livro(request, livro_id):
 
 @login_required
 def excluir(request, livro_id):
-	Livro.objects.get(id=livro_id).delete()
+	excluirLivro(request, livro_id)
 	
 	return redirect('/livros/meus-livros')
 
 
 @login_required
 def editar(request, livro_id):
-	pass
+	if request.method == 'POST':
+		editarLivro(livro_id, request)
+		return redirect('/livros/' + livro_id)
+
+	else:
+		context = {
+			'livro' : Livro.objects.get(id=livro_id)
+		}
+
+		return render(request, 'livros/editar.html', context)

@@ -19,7 +19,7 @@
 						<a href="/livros/editar/{{ livro.id }}" class="btn btn-block btn-info">Editar</a>
 					</div>
 					<div class="col-xs-6">
-						<a href="/livros/excluir/{{ livro.id }}" class="btn btn-block btn-danger">Excluir</a>
+						<a href="/livros/excluir/{{ livro.id }}" class="btn btn-block btn-danger" onclick="return confirm('Você tem certeza que deseja excluir este livro?');">Excluir</a>
 					</div>
 				</div>
 			{% endif %}

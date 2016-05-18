@@ -16,5 +16,4 @@ class HomeMethodTests(TestCase):
     def test_verifica_remocao_dos_livros_apos_deletar_conta(self):
         request = type('test', (object,), {'user' : self.u})()
         deletaConta(request)
-        self.assertNotIn(self.l, Livro.objects.all())
-        
+        self.assertNotIn(self.l, Livro.objects.all())     
