@@ -10,9 +10,17 @@
 	<script src="/static/assets/js/bootstrap.min.js" type="text/javascript" charset="utf-8" async defer></script>
 	<script src="/static/assets/js/jquery.min.js" type="text/javascript" charset="utf-8" async defer></script>
 </head>
+
 <body class="home-bg">
 	<div class="container center-fix">
 		<div class="row">
+			{% if contaDeletada %}
+				<div class="col-sm-6 col-sm-offset-3 alert alert-success" >
+					<strong>{{ nome }}</strong>, sua conta foi deletada com sucesso.
+				</div>
+			{% endif %}
+			<br>
+			<br>
 			<div class="col-sm-6 col-sm-offset-3 bg">
 				<h1>Liby</h1>
 				<p>Liby é uma plataforma de compartilhamento de livros. Aqui você pode trocar seus livros com outras pessoas. </p>

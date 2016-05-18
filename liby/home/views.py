@@ -21,8 +21,13 @@ def home(request):
 
 @login_required
 def deletarConta(request):
+	context = {
+		'contaDeletada' : True,
+		'nome' : request.user.perfil.nome,
+	}
+
 	request.user.delete()
-	return redirect('/')
+	return render(request, 'home/login.html', context)
 
 @login_required
 def configuracoes(request):
