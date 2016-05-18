@@ -51,6 +51,7 @@ def buscarisbn(request):
 
 		context = {
 			'livros' : buscarISBN(isbn),
+			'buscaRealizada' : True,
 		}
 
 		return render(request, 'livros/buscarisbn.html', context)
@@ -76,7 +77,7 @@ def excluir(request, livro_id):
 @login_required
 def editar(request, livro_id):
 	if request.method == 'POST':
-		editarLivro(livro_id, request)
+		editarLivro(request, livro_id)
 		return redirect('/livros/' + livro_id)
 
 	else:
