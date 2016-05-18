@@ -25,3 +25,11 @@ def buscar(request):
 
 	else:
 		return render(request, 'usuarios/buscar.html')
+
+@login_required
+def usuario(request, usuario_id):
+	context = {
+		'usuario' : Perfil.objects.get(id=usuario_id),
+	}
+
+	return render(request, 'usuarios/usuario.html', context)

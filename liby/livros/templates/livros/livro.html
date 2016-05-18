@@ -37,15 +37,13 @@
 	</h3>
 	<div class="row">
 		<div class="col-sm-3">
-			<div class="usuario">
+			<a href="/usuarios/{{ livro.dono.id }}" class="usuario" style="display: block; color: #5f5f5f">
 				<img src="{{ livro.dono.foto }}" alt="">
-				<div class="">
+				<div>
 					<h5>{{ livro.dono.nome }}</h5>
 					<h6>{{ livro.dono.cidade }}</h6>
-					<a href="#" class="btn btn-xs btn-default btn-block">Pegar</a>
 				</div>
-			</div>
+			</a>
 		</div>
 	</div>
-
 {% endblock pagina %}

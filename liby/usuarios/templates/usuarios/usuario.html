@@ -9,14 +9,28 @@
 		Usuário
 	</h3>
 	<div class="row">
-		{% for usuario in usuarios %}
-			<div class="col-sm-3">
-				<a href="/usuarios/{{ usuario.id }}" class="usuario" style="display: block; color: #5f5f5f">
-					<img src="{{ usuario.foto }}" alt="">
-					<div>
-						<h5>{{ usuario.nome }}</h5>
-						<h6>{{ usuario.cidade }}</h6>
-					</div>
+		<div class="col-sm-3">
+			<a href="/usuarios/{{ usuario.id }}" class="usuario" style="display: block; color: #5f5f5f;">
+				<img src="{{ usuario.foto }}" alt="">
+				<div>
+					<h5>{{ usuario.nome }}</h5>
+					<h6>{{ usuario.cidade }}</h6>
+				</div>
+			</a>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<h3 class="page-header">
+		Livros
+	</h3>
+	<div class="row">
+		{% for livro in usuario.livros.all %}
+			<div class="col-sm-2 livro">
+				<a href="/livros/{{ livro.id }}" class="home-livro">
+					<img src="{{ livro.capa }}" style="height: 180px;">
+					<h5>{{ livro.titulo | title }}</h5>
 				</a>
 			</div>
 		{% endfor %}
