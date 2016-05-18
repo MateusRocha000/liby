@@ -3,6 +3,7 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from home.models import Livro
+from .controllers import *
 
 def login(request):
 	return render(request, 'home/login.html')
@@ -22,11 +23,10 @@ def home(request):
 @login_required
 def deletarConta(request):
 	context = {
-		'contaDeletada' : True,
 		'nome' : request.user.perfil.nome,
+		'contaDeletada' : deletaConta(request),
 	}
-
-	request.user.delete()
+	
 	return render(request, 'home/login.html', context)
 
 @login_required
