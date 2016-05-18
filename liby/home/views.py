@@ -18,3 +18,12 @@ def home(request):
 		'livros' : Livro.objects.all().order_by('-data')[:8]
 	}
 	return render(request, 'home/home.html', context)
+
+@login_required
+def deletarConta(request):
+	request.user.delete()
+	return redirect('/')
+
+@login_required
+def configuracoes(request):
+	return render(request, 'home/configuracoes.html')

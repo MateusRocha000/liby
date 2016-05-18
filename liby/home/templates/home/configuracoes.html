@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Configurações
+{% endblock title %}
+
+{% block pagina %}
+	<h3 class="page-header">
+		Configurações
+	</h3>
+	
+	<a href="/deletarConta" class="btn btn-danger" onclick="return confirm('Você tem certeza que deseja deletar sua conta?');">Deletar minha conta</a>
+
+{% endblock pagina %}
