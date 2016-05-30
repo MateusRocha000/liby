@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Troca
+{% endblock title %}
+
+{% block pagina %}
+	<h3 class="page-header">
+		Troca
+	</h3>
+	<div class="row">
+		{% if not mensagens %}
+			<div class="col-xs-12">
+				<p>Ainda não há mensagens.</p>
+			</div>
+		{% endif %}
+
+		{% for mensagem in mensagens %}		
+
+			<div class="col-xs-6 col-sm-12 livro">	
+				<select class="form-control" name="estado" id="estado">
+					<option disabled selected>Escolha o livro que você deseja trocar</option>
+					<option value="0">A cabana</option>
+					<option value="1">A culpa é das estrelas</option>
+					<option value="2">A menina que não roubava livros</option>
+				</select>
+				<br>
+			</div>
+
+			<div class="col-xs-6 col-sm-12 livro">	
+
+				<center> 30/05 </center>
+				<p align="Left"> Olá, estou enteressado no livro A menina que roubava livros</p>
+				<p align="Right"> Quero o livro A Cabana </center> </p>
+				<p align="Left"> Tudo bem</p>
+				<p align="Right"> Onde vamos trocar? </center> </p>
+				<p align="Left"> No predio 12 do Cefet. Que horário você pode?</p>
+				<p align="Right"> Quarta 8:50 </center> </p>
+			</div>
+
+			<div class="col-xs-6 col-sm-12 livro">		
+				<br>
+				<textarea type="text" rows="3" name="msg"></textarea>
+				<br>
+  				<input type="submit" value="Enviar">
+ 			</div>
+
+		{% endfor %}
+
+	</div>
+{% endblock pagina %}
