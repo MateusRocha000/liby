@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'',            include('home.urls')),
     url(r'^livros/',    include('livros.urls')),
     url(r'^usuarios/',  include('usuarios.urls')),
+    url(r'^trocas/',    include('trocas.urls')),
 ]

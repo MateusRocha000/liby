@@ -92,3 +92,48 @@ body {
 .sub-item {
 	background-color: #f9f9f9;
 }
+
+/*Trocas*/
+
+.chat {
+	border: 1px solid #EEE;
+	padding: 10px;
+	margin-bottom: 10px;
+	height: 400px;
+	overflow-y: auto;
+}
+
+.chat img {
+	width: 30px;
+}
+
+.chat > div {
+	margin-bottom: 5px;
+}
+
+.mensagem {
+	border: 1px solid #CCC;
+	border-radius: 5px;
+	padding: 5px;
+	background-color: #EEE;
+	display: inline;
+}
+
+
+.mensagem > p {
+	margin-bottom: 0;
+	display: inline;
+}
+
+.mensagem > small{
+	color: #AAA;
+	font-size: 10px;
+}
+
+.destinatario {
+	text-align: right;
+}
+
+.destinatario > img {
+	margin-left: 5px;
+}

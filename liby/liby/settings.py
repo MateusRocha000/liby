@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'livros.apps.LivrosConfig',
     'usuarios.apps.UsuariosConfig',
+    'trocas.apps.TrocasConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -115,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 

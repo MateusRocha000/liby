@@ -15,37 +15,104 @@
 			</div>
 		{% endif %}
 
-		{% for mensagem in mensagens %}		
+			
 
-			<div class="col-xs-6 col-sm-12 livro">	
-				<select class="form-control" name="estado" id="estado">
-					<option disabled selected>Escolha o livro que você deseja trocar</option>
-					<option value="0">A cabana</option>
-					<option value="1">A culpa é das estrelas</option>
-					<option value="2">A menina que não roubava livros</option>
-				</select>
-				<br>
-			</div>
+			<div class="col-xs-6">
+				<div class="chat">
+					{% for msg in mensagens %}
+						{% if msg.remetente == user.perfil %}
+							<div class="remetente">
+								<img src="{{msg.remetente.foto}}" alt="">
+								<div class="mensagem">
+									<p>{{ msg.conteudo }}</p>
+									<small>{{ msg.data |time:"H:i" }}</small>
+								</div>
+							</div>
+						{% else %}
+							<div class="destinatario">
+								<div class="mensagem">
+									<p>{{ msg.conteudo }}</p>
+									<small>{{ msg.data |time:"H:i" }}</small>
+								</div>
+								<img src="{{msg.remetente.foto}}" alt="">
+							</div>
+						{% endif %}
+					{% endfor %}
+				</div>
 
-			<div class="col-xs-6 col-sm-12 livro">	
-
-				<center> 30/05 </center>
-				<p align="Left"> Olá, estou enteressado no livro A menina que roubava livros</p>
-				<p align="Right"> Quero o livro A Cabana </center> </p>
-				<p align="Left"> Tudo bem</p>
-				<p align="Right"> Onde vamos trocar? </center> </p>
-				<p align="Left"> No predio 12 do Cefet. Que horário você pode?</p>
-				<p align="Right"> Quarta 8:50 </center> </p>
-			</div>
-
-			<div class="col-xs-6 col-sm-12 livro">		
-				<br>
-				<textarea type="text" rows="3" name="msg"></textarea>
-				<br>
-  				<input type="submit" value="Enviar">
+				<form>
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Mensagem">
+					</div>
+					<button type="submit" class="btn btn-default">Enviar</button>
+				</form>
  			</div>
 
-		{% endfor %}
+ 			<div class="col-xs-6">
+				<form>
+					<div class="form-group">
+						<label>Seu Livro</label>
+						{% if trocaRealizada %}
+							<select class="form-control" disabled>
+						{% else %}
+							<select class="form-control">
+						{% endif %}
+							{% for livro in remetente.livros.all %}
+								<option>{{livro}}</option>
+							{% endfor %}
+						</select>
+					</div>
+					<div class="form-group">
+						<label>Desejado</label>
+						{% if trocaRealizada %}
+							<select class="form-control" disabled>
+						{% else %}
+							<select class="form-control">
+						{% endif %}
+							{% for livro in destinatario.livros.all %}
+								<option>{{livro}}</option>
+							{% endfor %}
+						</select>
+					</div>
+					<button type="submit" class="btn btn-default btn-success">Trocar</button>
+					<button type="submit" class="btn btn-default btn-danger">Cancelar</button>
+				</form>
+ 			</div>
+
+ 			{% if trocaRealizada %}
+	 			<div class="col-xs-6">
+	 				<br>
+	 				<br>
+					<form>
+						<div class="form-group">
+							<label>Avalie o usuário</label>
+							<textarea class="form-control" rows="3"></textarea>
+						</div>
+						<div class="form-group">
+							<label>Nota</label>
+							<br>
+							<label class="radio-inline">
+								<input type="radio" name="nota" value="option1"> 1
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="nota" value="option2"> 2
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="nota" value="option3"> 3
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="nota" value="option2"> 4
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="nota" value="option3"> 5
+							</label>
+						</div>
+						<button type="submit" class="btn btn-default btn-success">Finalizar</button>
+					</form>
+	 			</div>
+ 			{% endif %}
+
+
 
 	</div>
 {% endblock pagina %}
