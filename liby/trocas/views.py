@@ -7,7 +7,10 @@ from datetime import datetime
 # Create your views here.
 @login_required
 def trocas(request):
-	pass
+	context = {
+		'trocas' : Troca.objects.filter(perfil_1=request.user.perfil) | Troca.objects.filter(perfil_2=request.user.perfil)
+	}
+	return render(request, 'trocas/trocas.html', context)
 
 @login_required
 def troca(request, troca_id):

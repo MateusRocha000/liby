@@ -137,3 +137,59 @@ body {
 .destinatario > img {
 	margin-left: 5px;
 }
+
+/*Troca*/
+.troca-perfil > img{
+	width: 40px;
+	height: 40px;
+}
+
+.troca-perfil > p{
+	background-color: #FFF;
+	border: 1px solid #CCC;
+	border-radius: 5px;
+	padding: 5px;
+	margin-top: 5px;
+}
+
+.troca-perfil > p::before{
+	content: '"';
+	font-size: 16px;
+	font-weight: bolder;
+}
+
+.troca-perfil > p::after{
+	content: '"';
+	font-size: 16px;
+	font-weight: bolder;
+}
+
+.troca-livros > img {
+	width: 100%;
+}
+
+.troca-livros > i {
+	margin-top: 60px;
+}
+
+.troca-perfil > img{
+	float: left;
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+.troca-perfil-2 > img{
+	float: right
+}
+
+.troca-perfil-2 > a{
+	text-align: right;
+	display: block;
+}
+
+.troca-data {
+	color: #777;
+}
+
+/*Troca*/
+

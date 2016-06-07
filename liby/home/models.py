@@ -40,21 +40,23 @@ class Livro(models.Model):
 	def __str__(self):
 		return self.titulo + ' by ' + self.autor
 
-class Transacao(models.Model):
-	livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
-	usuarioSolicitante = models.ForeignKey(Perfil, on_delete=models.CASCADE)
+class Troca(models.Model):
+	perfil_1 = models.ForeignKey(Perfil, on_delete=models.CASCADE)
+	perfil_2 = models.ForeignKey(Perfil, on_delete=models.CASCADE, related_name="trocas")
+	livro_1 = models.ForeignKey(Livro, on_delete=models.CASCADE)
+	livro_2 = models.ForeignKey(Livro, on_delete=models.CASCADE, related_name="livros_trocados")
+	nota_1 = models.IntegerField(default=1)
+	nota_2 = models.IntegerField(default=1)
+	avaliacao_1 = models.TextField(blank=True)
+	avaliacao_2 = models.TextField(blank=True)
 	concluida = models.BooleanField(default=False)
-	avaliacaoDono = models.TextField()
-	avaliacaoSolicitante = models.TextField()
-	notaDono = models.IntegerField()
-	notaSolicitante = models.IntegerField()
+	data = models.DateField(auto_now_add=True)
 
 class Mensagem(models.Model):
 	data = models.DateField(auto_now_add=True)
+	remetente = models.ForeignKey(Perfil, related_name='mensagens')
+	troca = models.ForeignKey(Troca)
 	conteudo = models.TextField()
-	destinatario = models.ForeignKey(Perfil, related_name='destinatario')
-	remetente = models.ForeignKey(Perfil, related_name='remetente')
-	transacao = models.ForeignKey(Transacao)
-
+	
 	def __str__(self):
 		return self.conteudo
