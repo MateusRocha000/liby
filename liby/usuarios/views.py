@@ -33,3 +33,8 @@ def usuario(request, usuario_id):
 	}
 
 	return render(request, 'usuarios/usuario.html', context)
+
+
+@login_required
+def seguindo(request):
+	return render(request, 'usuarios/seguindo.html', context)

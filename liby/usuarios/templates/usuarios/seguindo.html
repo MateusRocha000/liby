@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Seguindo
+{% endblock title %}
+
+{% block pagina %}
+	<h3 class="page-header">
+		Seguindo
+	</h3>
+	<div class="row">
+		{% for usuario in user.perfil.seguindo %}
+			<div class="col-sm-3">
+				<a href="/usuarios/{{ usuario.id }}" class="usuario">
+					<img src="{{ usuario.foto }}" alt="">
+					<div>
+						<h5>{{ usuario.nome }}</h5>
+						<h6>{{ usuario.cidade }}</h6>
+					</div>
+				</a>
+				<a href="/usuarios/seguir/{{ usuario.id }}" class="btn btn-default btn-block">Seguir</a>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock pagina %}
