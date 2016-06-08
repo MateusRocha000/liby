@@ -70,23 +70,36 @@ body {
 	text-align: center;
 }
 
+	/*.usuario {
+		position: relative;
+	}
+
+	.usuario > img {
+		position: absolute;
+		left: 0;
+	}
+
+	.usuario > div {
+		position: absolute;
+		left: 60px;
+	}
+
+	.usuario h5 {
+		margin-top: 5px;
+		font-weight: bold;
+	}*/
+
 .usuario {
-	position: relative;
+	text-decoration: none;
+	color: #333;
 }
 
 .usuario > img {
-	position: absolute;
-	left: 0;
+	float: left;
 }
 
 .usuario > div {
-	position: absolute;
-	left: 60px;
-}
-
-.usuario h5 {
-	margin-top: 5px;
-	font-weight: bold;
+	margin-left: 60px;
 }
 
 .sub-item {

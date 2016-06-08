@@ -14,32 +14,19 @@ def trocas(request):
 
 @login_required
 def troca(request, troca_id):
-	saulo = request.user.perfil
-	lucas = Perfil.objects.get(nome__contains='Lucas R')
-
-
-	m1 = Mensagem(remetente=saulo, 
-				  destinatario=lucas,
-				  conteudo="Ola Lucão, como está?",
-				  data=datetime.now())
-	m2 = Mensagem(remetente=lucas,
-				  destinatario=saulo,
-				  conteudo="Bem.",
-				  data=datetime.now())
-
-	m3 = Mensagem(remetente=saulo, 
-				  destinatario=lucas,
-				  conteudo="Vamos trocar o livrin?",
-				  data=datetime.now())
-	m4 = Mensagem(remetente=lucas,
-				  destinatario=saulo,
-				  conteudo="#partiu",
-				  data=datetime.now())
-
 	context = {
-		'mensagens' : [m1, m2, m3, m4, m4, m3],
-		'destinatario' : saulo,
-		'remetente' : lucas,
-		'trocaRealizada' : True
+		"troca" : Troca.objects.get(id=troca_id),
+		"mensagens" : Mensagem.objects.filter(troca__id=troca_id)
 	}
+
 	return render(request, 'trocas/troca.html', context)
+
+@login_required
+def mensagem(request, troca_id):
+	m = Mensagem()
+	m.remetente = request.user.perfil
+	m.troca = Troca.objects.get(id=troca_id)
+	m.conteudo = request.POST['conteudo']
+	m.save()
+
+	return redirect('/trocas/' + troca_id)

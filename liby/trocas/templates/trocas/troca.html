@@ -9,20 +9,18 @@
 		Troca
 	</h3>
 	<div class="row">
-		{% if not mensagens %}
-			<div class="col-xs-12">
-				<p>Ainda não há mensagens.</p>
-			</div>
-		{% endif %}
-
-			
-
 			<div class="col-xs-6">
 				<div class="chat">
+					{% if not mensagens %}
+						<div class="col-xs-12">
+							<p>Ainda não há mensagens.</p>
+						</div>
+					{% endif %}
+
 					{% for msg in mensagens %}
 						{% if msg.remetente == user.perfil %}
 							<div class="remetente">
-								<img src="{{msg.remetente.foto}}" alt="">
+								<img src="{{msg.remetente.foto}}" class="img-circle" alt="">
 								<div class="mensagem">
 									<p>{{ msg.conteudo }}</p>
 									<small>{{ msg.data |time:"H:i" }}</small>
@@ -34,49 +32,57 @@
 									<p>{{ msg.conteudo }}</p>
 									<small>{{ msg.data |time:"H:i" }}</small>
 								</div>
-								<img src="{{msg.remetente.foto}}" alt="">
+								<img src="{{msg.remetente.foto}}" class="img-circle" alt="">
 							</div>
 						{% endif %}
 					{% endfor %}
 				</div>
 
-				<form>
+				<form method="POST" action="/trocas/mensagem/{{troca.id}}">
+					{% csrf_token %}
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Mensagem">
+						<input type="text" class="form-control" name="conteudo" placeholder="Mensagem">
 					</div>
 					<button type="submit" class="btn btn-default">Enviar</button>
 				</form>
  			</div>
 
  			<div class="col-xs-6">
-				<form>
-					<div class="form-group">
-						<label>Seu Livro</label>
-						{% if trocaRealizada %}
-							<select class="form-control" disabled>
-						{% else %}
-							<select class="form-control">
-						{% endif %}
-							{% for livro in remetente.livros.all %}
-								<option>{{livro}}</option>
-							{% endfor %}
-						</select>
+				
+
+				{% if troca.livro_1 and troca.livro_2 %}
+					<div class="row">
+						<div class="col-xs-5 troca-livros">
+							<img src="{{troca.livro_1.capa}}" alt="">
+						</div>
+						<div class="col-xs-2 troca-livros">
+							<i class="fa fa-exchange fa-fw"></i>
+						</div>
+						<div class="col-xs-5 troca-livros">
+							<img src="{{troca.livro_2.capa}}" alt="">
+						</div>
+
+
 					</div>
-					<div class="form-group">
-						<label>Desejado</label>
-						{% if trocaRealizada %}
-							<select class="form-control" disabled>
-						{% else %}
-							<select class="form-control">
-						{% endif %}
-							{% for livro in destinatario.livros.all %}
-								<option>{{livro}}</option>
-							{% endfor %}
-						</select>
-					</div>
-					<button type="submit" class="btn btn-default btn-success">Trocar</button>
-					<button type="submit" class="btn btn-default btn-danger">Cancelar</button>
-				</form>
+				{% else %}
+					<form>
+						<div class="form-group">
+							<label>Desejado</label>
+								<select class="form-control">
+								{% if troca.perfil_1 == user.perfil %}
+									{% for livro in troca.perfil_2.livros.all %}
+										<option value="{{livro.id}}">{{livro}}</option>
+									{% endfor %}
+								{% else %}
+									{% for livro in troca.perfil_1.livros.all %}
+										<option value="{{livro.id}}">{{livro}}</option>
+									{% endfor %}
+								{% endif %}
+							</select>
+						</div>
+						<button type="submit" class="btn btn-default btn-success">Selecionar</button>
+					</form>
+				{% endif %}
  			</div>
 
  			{% if trocaRealizada %}
