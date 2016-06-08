@@ -34,7 +34,14 @@ def usuario(request, usuario_id):
 
 	return render(request, 'usuarios/usuario.html', context)
 
-
 @login_required
 def seguindo(request):
 	return render(request, 'usuarios/seguindo.html', context)
+
+@login_required
+def seguir(request, usuario_id):
+	perfil = Perfil.objects.get(user__id=usuario_id)
+	Perfil.objects.get(user = request.user).seguindo.add(perfil)
+
+	return redirect("/usuarios/usuario_id")
+
