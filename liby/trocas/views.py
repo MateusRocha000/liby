@@ -30,3 +30,28 @@ def mensagem(request, troca_id):
 	m.save()
 
 	return redirect('/trocas/' + troca_id)
+
+@login_required
+def nova(request, usuario_id, livro_id):
+	p1 = request.user.perfil
+	p2 = Perfil.objects.get(user__id=usuario_id)
+	l1 = Livro.objects.get(id=livro_id)
+
+	if Troca.objects.filter(perfil_1=p1, perfil_2=p2):
+		troca = Troca.objects.filter(perfil_1=p1, perfil_2=p2)[0]
+		if not troca.concluida:
+			return redirect("/trocas/"+ str(troca.id))
+
+	elif Troca.objects.filter(perfil_1=p2, perfil_2=p1):
+		troca = Troca.objects.filter(perfil_1=p2, perfil_2=p1)[0]
+		if not troca.concluida:
+			return redirect("/trocas/"+str(troca.id))
+
+	else:
+		t = Troca()
+		t.perfil_1 = p1
+		t.perfil_2 = p2
+		t.livro_1 = l1
+		t.livro_2 = l1
+		t.save()
+		return redirect('/trocas/' + str(t.id))
