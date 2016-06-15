@@ -19,7 +19,7 @@
 			</a>
 			{% if usuario != request.user.perfil %}
 				{% if usuario in request.user.perfil.seguindo.all %}
-					<a href="/usuarios/deixardeseguir/{{ usuario.id }}" class="btn btn-primary btn-block seguir"><span>Seguindo</span></a>
+					<a href="/usuarios/deixardeseguir/{{ usuario.id }}" class="btn btn-primary btn-block seguir" onclick="return confirm('Você tem certeza que deseja deixar de seguir {{usuario.nome}}');"><span>Seguindo</span></a>
 				{% else %}
 					<a href="/usuarios/seguir/{{ usuario.id }}" class="btn btn-default btn-block"><span>Seguir</span></a>
 				{% endif %}

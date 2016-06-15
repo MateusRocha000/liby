@@ -6,11 +6,21 @@ from datetime import datetime
 
 # Create your views here.
 @login_required
-def trocas(request):
+def pendentes(request):
 	context = {
-		'trocas' : Troca.objects.filter(perfil_1=request.user.perfil) | Troca.objects.filter(perfil_2=request.user.perfil)
+		'trocas' : request.user.perfil.trocas_1.filter(concluida=False) | request.user.perfil.trocas_2.filter(concluida=False),
 	}
-	return render(request, 'trocas/trocas.html', context)
+
+	return render(request, 'trocas/pendentes.html', context)
+
+@login_required
+def concluidas(request):
+	context = {
+		'trocas' : request.user.perfil.trocas_1.filter(concluida=True) | request.user.perfil.trocas_2.filter(concluida=True),
+	}
+	return render(request, 'trocas/concluidas.html', context)
+
+
 
 @login_required
 def troca(request, troca_id):

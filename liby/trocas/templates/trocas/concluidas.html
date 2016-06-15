@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block title %}
-	Trocas
+	Trocas Concluídas
 {% endblock title %}
 
 {% block pagina %}
 	<h3 class="page-header">
-		Trocas
+		Trocas Concluídas
 	</h3>
 	{% for troca in trocas %}
 		<div class="row">
@@ -15,7 +15,7 @@
 			</div>
 			<div class="col-xs-4 troca-perfil">
 				<img class="img-circle" src="{{troca.perfil_1.foto}}" alt="">
-				<a href="#">{{troca.perfil_1.nome}}</a>
+				<a href="/usuarios/{{ troca.perfil_1.id }}">{{troca.perfil_1.nome}}</a>
 				<p>{{troca.avaliacao_1}}</p>
 			</div>
 			<div class="col-xs-4">
@@ -33,7 +33,7 @@
 			</div>
 			<div class="col-xs-4 troca-perfil troca-perfil-2">
 				<img class="img-circle" src="{{troca.perfil_2.foto}}" alt="">
-				<a href="#">{{troca.perfil_2.nome}}</a>
+				<a href="/usuarios/{{ troca.perfil_2.id }}">{{troca.perfil_2.nome}}</a>
 				<p>{{troca.avaliacao_2}}</p>
 			</div>
 		</div>
