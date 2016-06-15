@@ -125,3 +125,12 @@ def finalizar(request, troca_id):
 			
 	return redirect('/trocas/concluidas/')
 
+
+@login_required
+def recusar(request, troca_id):
+	t = Troca.objects.get(id=troca_id)
+	t.delete()
+
+
+			
+	return redirect('/trocas/concluidas/')

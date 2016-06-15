@@ -10,4 +10,5 @@ urlpatterns = [
 	url(r'^selecionar/(?P<troca_id>\w+)',	views.selecionar, 		name='trocas'),
 	url(r'^aceitar/(?P<troca_id>\w+)',	views.aceitar, 		name='trocas'),
 	url(r'^finalizar/(?P<troca_id>\w+)',	views.finalizar, 		name='trocas'),
+	url(r'^recusar/(?P<troca_id>\w+)',	views.recusar, 		name='trocas'),
 ]
