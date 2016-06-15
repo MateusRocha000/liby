@@ -25,7 +25,7 @@
 				<h6>por <b>{{ livro.autor}}</b></h6>
 				<h6>de <b>{{ livro.dono.nome }}</b></h6>
 				<h6>Adicionado em {{ livro.data }}</h6>
-				<a href="#" class="btn btn-default btn-block">Pegar</a>
+				<a href="/trocas/nova/{{livro.dono.user.id}}/{{livro.id}}" class="btn btn-default btn-block">Pegar</a>
 				</br>
 				
 			</div>

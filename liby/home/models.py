@@ -45,7 +45,7 @@ class Troca(models.Model):
 	perfil_1 = models.ForeignKey(Perfil, on_delete=models.CASCADE)
 	perfil_2 = models.ForeignKey(Perfil, on_delete=models.CASCADE, related_name="trocas")
 	livro_1 = models.ForeignKey(Livro, on_delete=models.CASCADE)
-	livro_2 = models.ForeignKey(Livro, on_delete=models.CASCADE, related_name="livros_trocados")
+	livro_2 = models.ForeignKey(Livro, on_delete=models.CASCADE, related_name="livros_trocados",blank=True, null=True)
 	nota_1 = models.IntegerField(default=1)
 	nota_2 = models.IntegerField(default=1)
 	avaliacao_1 = models.TextField(blank=True)
