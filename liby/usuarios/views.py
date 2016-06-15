@@ -30,6 +30,7 @@ def buscar(request):
 def usuario(request, usuario_id):
 	context = {
 		'usuario' : Perfil.objects.get(id=usuario_id),
+		'trocas': Troca.objects.filter(perfil_1__id=usuario_id) | Troca.objects.filter(perfil_2__id=usuario_id)
 	}
 
 	return render(request, 'usuarios/usuario.html', context)

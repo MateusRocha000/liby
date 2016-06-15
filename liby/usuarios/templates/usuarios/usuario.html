@@ -39,4 +39,38 @@
 			</div>
 		{% endfor %}
 	</div>
+	<h3 class="page-header">
+		Trocas Realizadas
+	</h3>
+	{% for troca in trocas %}
+		<div class="row">
+			<div class="col-xs-12">
+				<p class="troca-data"><i class="fa fa-calendar fa-fw"></i> {{troca.data}}</p>
+			</div>
+			<div class="col-xs-4 troca-perfil">
+				<img class="img-circle" src="{{troca.perfil_1.foto}}" alt="">
+				<a href="/usuarios/{{ troca.perfil_1.id }}">{{troca.perfil_1.nome}}</a>
+				<p>{{troca.avaliacao_1}}</p>
+			</div>
+			<div class="col-xs-4">
+				<div class="row">
+					<div class="col-xs-5 troca-livros">
+						<img src="{{troca.livro_1.capa}}" alt="">
+					</div>
+					<div class="col-xs-2 troca-livros">
+						<i class="fa fa-exchange fa-fw"></i>
+					</div>
+					<div class="col-xs-5 troca-livros">
+						<img src="{{troca.livro_2.capa}}" alt="">
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-4 troca-perfil troca-perfil-2">
+				<img class="img-circle" src="{{troca.perfil_2.foto}}" alt="">
+				<a href="/usuarios/{{ troca.perfil_2.id }}">{{troca.perfil_2.nome}}</a>
+				<p>{{troca.avaliacao_2}}</p>
+			</div>
+		</div>
+		<hr>
+	{% endfor %}
 {% endblock pagina %}
