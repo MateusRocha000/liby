@@ -50,6 +50,11 @@ class Troca(models.Model):
 	nota_2 = models.IntegerField(default=1)
 	avaliacao_1 = models.TextField(blank=True)
 	avaliacao_2 = models.TextField(blank=True)
+	concluida_1 = models.BooleanField(default=False)
+	concluida_2 = models.BooleanField(default=False)
+	finalizada_1 = models.BooleanField(default=False)
+	finalizada_2 = models.BooleanField(default=False)
+	finalizada = models.BooleanField(default=False)
 	concluida = models.BooleanField(default=False)
 	data = models.DateField(auto_now_add=True)
 

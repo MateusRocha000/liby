@@ -47,11 +47,19 @@
 				</form>
  			</div>
 
- 			<div class="col-xs-6">	 				
+ 			{% if user.request.perfil == troca.perfil_1 and troca.finalizada_1 or user.request.perfil == troca.perfil_2 and troca.finalizada_2 %}
 
+ 				Você já finalizou sua troca. Aguarde a avaliação do outro usuario.
+
+ 			{% else %}
+
+
+ 			<div class="col-xs-6">				
+				<form method="POST" action="/trocas/selecionar/{{troca.id}}">
+				{% csrf_token %}
 					<div class="form-group">
 						<label>Desejado</label>
-							<select class="form-control" name="escolha" >
+							<select name="livro_id" class="form-control">
 							{% if troca.perfil_1 == user.perfil %}
 								{% for livro in troca.perfil_2.livros.all %}
 									<option value="{{livro.id}}">{{livro}}</option>
@@ -61,76 +69,101 @@
 									<option value="{{livro.id}}">{{livro}}</option>
 								{% endfor %}
 							{% endif %}
-							</select>							
-						<button type="submit" class="btn btn-default">Selecionar</button>							
+						</select>
+					</div>						
+					<button type="submit" class="btn btn-default">Selecionar</button>
+				</form>
+
+				<br>
+
+				{% if troca.livro_1 and troca.livro_2 %}
+					<div class="row">
+						<div class="col-xs-5 troca-livros">
+							<img src="{{troca.livro_1.capa}}" alt="">
+						</div>
+						<div class="col-xs-2 troca-livros">
+							<i class="fa fa-exchange fa-fw"></i>
+						</div>
+						<div class="col-xs-5 troca-livros">
+							<img src="{{troca.livro_2.capa}}" alt="">
+						</div>
 					</div>
 
-					{% if troca.livro_1 and troca.livro_2 %}
+					<br>
+
+					{% if request.user.perfil == troca.perfil_1 and not troca.concluida_1 %} 
+
 						<div class="row">
-							<div class="col-xs-5 troca-livros">
-								<img src="{{troca.livro_1.capa}}" alt="">
+							<div class="col-xs-3 col-xs-offset-2">							
+								<a href="/trocas/aceitar/{{troca.id}}}" class="btn btn-default btn-success btn-block">Aceitar</a>
 							</div>
-							<div class="col-xs-2 troca-livros">
-								<i class="fa fa-exchange fa-fw"></i>
-							</div>
-							<div class="col-xs-5 troca-livros">
-								<img src="{{troca.livro_2.capa}}" alt="">
+
+							<div class="col-xs-3 col-xs-offset-1">							
+								<a href="/trocas/recusar/{{troca.id}}}" class="btn btn-default btn-danger btn-block">Recusar</a>
 							</div>
 						</div>
 
-						<div class="form-group">
-							<br>
-							<label class="radio-inline">
-								<button type="submit" class="btn btn-default btn-success">Aceitar</button>
-							</label>
-							<label class="radio-inline">	
-								<button type="submit" class="btn btn-default btn-danger">Recusar</button>
-							</label>
-							</br>
+					{% elif request.user.perfil == troca.perfil_2 and not troca.concluida_2 %} 
+
+						<div class="row">
+							<div class="col-xs-3 col-xs-offset-2">							
+								<a href="/trocas/aceitar/{{troca.id}}" class="btn btn-default btn-success btn-block">Aceitar</a>
+							</div>
+
+							<div class="col-xs-3 col-xs-offset-1">							
+								<a href="/trocas/recusar/{{troca.id}}}" class="btn btn-default btn-danger btn-block">Recusar</a>
+							</div>
 						</div>
 
-					{% else %}
+					{% elif not troca.concluida %}
 
-						<p>Aguardando que os dois usúarios escolham o livro.</p>
-					
+						Aguardando o outro usuário.
+
 					{% endif %}
 
+				{% else %}
 
+					<p>Aguardando que os dois usúarios escolham o livro.</p>
+				
+				{% endif %}
 				
  			</div>
 
- 			{% if trocaRealizada %}
+ 			{% if troca.concluida %}
 	 			<div class="col-xs-6">
 	 				<br>
 	 				<br>
-					<form>
+					<form method="POST" action="/trocas/finalizar/{{troca.id}}">
+					{% csrf_token %}
 						<div class="form-group">
 							<label>Avalie o usuário</label>
-							<textarea class="form-control" rows="3"></textarea>
+							<textarea class="form-control" rows="3" name="avaliacao"></textarea>
 						</div>
 						<div class="form-group">
 							<label>Nota</label>
 							<br>
 							<label class="radio-inline">
-								<input type="radio" name="nota" value="option1"> 1
+								<input type="radio" name="nota" value="1"> 1
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="nota" value="option2"> 2
+								<input type="radio" name="nota" value="2"> 2
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="nota" value="option3"> 3
+								<input type="radio" name="nota" value="3"> 3
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="nota" value="option2"> 4
+								<input type="radio" name="nota" value="4"> 4
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="nota" value="option3"> 5
+								<input type="radio" name="nota" value="5"> 5
 							</label>
 						</div>
 						<button type="submit" class="btn btn-default btn-success">Finalizar</button>
 					</form>
 	 			</div>
  			{% endif %}
+
+ 		{% endif %}
 
 
 

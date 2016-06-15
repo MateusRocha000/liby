@@ -64,22 +64,64 @@ def nova(request, usuario_id, livro_id):
 		t.perfil_1 = p1
 		t.perfil_2 = p2
 		t.livro_1 = l1
-		t.livro_2 = l1
 		t.save()
 		return redirect('/trocas/' + str(t.id))
 
 @login_required
-def selecionar(request, troca_id, livro_id):
-	p1 = request.user.perfil
+def selecionar(request, troca_id):
+	livro_id = request.POST["livro_id"]
 	t = Troca.objects.get(id=troca_id)
 
-	if t.perfil_1 == p1:
+	if t.perfil_1 == request.user.perfil:
 		t.livro_1 = Livro.objects.get(id=livro_id)
-
-	if t.perfil_2 == p1:
+	else:
 		t.livro_2 = Livro.objects.get(id=livro_id)
+
+	t.save()
+
+	t.concluida_1 = False
+	t.concluida_2 = False
+	t.concluida = False
+			
+	return redirect('/trocas/' + troca_id)
+
+@login_required
+def aceitar(request, troca_id):
+	t = Troca.objects.get(id=troca_id)
+
+	if t.perfil_1 == request.user.perfil:
+		t.concluida_1 = True
+	else:
+		t.concluida_1 = True
+
+	t.concluida = t.concluida_1 and t.concluida_2
 
 	t.save()			
 			
 	return redirect('/trocas/' + troca_id)
+
+
+
+@login_required
+def finalizar(request, troca_id):
+	t = Troca.objects.get(id=troca_id)
+
+	if t.perfil_1 == request.user.perfil:
+		t.avaliacao_1 = request.POST['avaliacao']
+		t.nota_1 = request.POST['nota']
+		t.finalizada_1 = True
+	else:
+		t.avaliacao_2 = request.POST['avaliacao']
+		t.nota_2 = request.POST['nota']
+		t.finalizada_2 = True
+
+	t.finalizada = t.finalizada_1 and t.finalizada_2
+	t.save()			
+
+	if t.finalizada:
+		t.livro_1.dono = t.perfil_2
+		t.livro_2.dono = t.perfil_1
+
+			
+	return redirect('/trocas/concluidas/')
 
