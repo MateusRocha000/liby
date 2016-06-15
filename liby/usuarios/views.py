@@ -28,9 +28,11 @@ def buscar(request):
 
 @login_required
 def usuario(request, usuario_id):
+	trocas = Troca.objects.filter(perfil_1__id=usuario_id, concluida=True) | Troca.objects.filter(perfil_2__id=usuario_id, concluida=True)
+	
 	context = {
 		'usuario' : Perfil.objects.get(id=usuario_id),
-		'trocas': Troca.objects.filter(perfil_1__id=usuario_id) | Troca.objects.filter(perfil_2__id=usuario_id)
+		'trocas' : trocas.all().order_by('-data')
 	}
 
 	return render(request, 'usuarios/usuario.html', context)

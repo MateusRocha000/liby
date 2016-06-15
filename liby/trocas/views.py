@@ -7,16 +7,18 @@ from datetime import datetime
 # Create your views here.
 @login_required
 def pendentes(request):
+	trocas = Troca.objects.filter(perfil_1=request.user.perfil, concluida=False) | Troca.objects.filter(perfil_2=request.user.perfil, concluida=False)
 	context = {
-		'trocas' : request.user.perfil.trocas_1.filter(concluida=False) | request.user.perfil.trocas_2.filter(concluida=False),
+		'trocas' : trocas.all().order_by('-data')
 	}
 
 	return render(request, 'trocas/pendentes.html', context)
 
 @login_required
 def concluidas(request):
+	trocas = Troca.objects.filter(perfil_1=request.user.perfil, concluida=True) | Troca.objects.filter(perfil_2=request.user.perfil, concluida=True)
 	context = {
-		'trocas' : request.user.perfil.trocas_1.filter(concluida=True) | request.user.perfil.trocas_2.filter(concluida=True),
+		'trocas' : trocas.all().order_by('-data')
 	}
 	return render(request, 'trocas/concluidas.html', context)
 
