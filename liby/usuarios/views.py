@@ -43,5 +43,5 @@ def seguir(request, usuario_id):
 	perfil = Perfil.objects.get(user__id=usuario_id)
 	Perfil.objects.get(user = request.user).seguindo.add(perfil)
 
-	return redirect("/usuarios/usuario_id")
+	return redirect("/usuarios/" + usuario_id)
 
