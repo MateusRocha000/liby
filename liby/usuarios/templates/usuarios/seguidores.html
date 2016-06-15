@@ -9,6 +9,11 @@
 		Seguidores
 	</h3>
 	<div class="row">
+		{% if not user.perfil.seguidores.all %}
+			<div class="col-xs-12">
+				Você ainda não possui seguidores.
+			</div>
+		{% endif %}
 		{% for usuario in user.perfil.seguidores.all %}
 			<div class="col-sm-3">
 				<a href="/usuarios/{{ usuario.id }}" class="usuario">

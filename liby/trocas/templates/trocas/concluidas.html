@@ -8,6 +8,11 @@
 	<h3 class="page-header">
 		Trocas Concluídas
 	</h3>
+	{% if not trocas %}
+		<div class="col-xs-12">
+			Você ainda não realizou nenhuma troca.
+		</div>
+	{% endif %}
 	{% for troca in trocas %}
 		<div class="row">
 			<div class="col-xs-12">

@@ -9,25 +9,29 @@
 		Trocas Pendentes
 	</h3>
 	<div class="row">
-	{% for troca in trocas %}
-
-		<div class="col-xs-4">
-			<div class="thumbnail">
-				<img class="img-circle" src="{{troca.perfil_1.foto}}" style="margin-top:10px;">
-				<div class="caption">
-					<h4 style="text-align:center">
-						<a href="/usuarios/{{ troca.perfil_1.id }}">{{troca.perfil_1.nome}}</a>
-					</h4>
-					<p style="text-align:center" title="Data de início da troca">
-						<i class="fa fa-calendar fa-fw"></i> {{troca.data}}
-					</p>
-					
-					<div class="row">
-						<a href="/trocas/{{troca.id}}" class="btn btn-default col-xs-6 col-xs-offset-3">Continuar troca</a>
+		{% if not trocas %}
+			<div class="col-xs-12">
+				Você não possui trocas pendentes.
+			</div>
+		{% endif %}
+		{% for troca in trocas %}
+			<div class="col-xs-4">
+				<div class="thumbnail">
+					<img class="img-circle" src="{{troca.perfil_1.foto}}" style="margin-top:10px;">
+					<div class="caption">
+						<h4 style="text-align:center">
+							<a href="/usuarios/{{ troca.perfil_1.id }}">{{troca.perfil_1.nome}}</a>
+						</h4>
+						<p style="text-align:center" title="Data de início da troca">
+							<i class="fa fa-calendar fa-fw"></i> {{troca.data}}
+						</p>
+						
+						<div class="row">
+							<a href="/trocas/{{troca.id}}" class="btn btn-default col-xs-6 col-xs-offset-3">Continuar troca</a>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	{% endfor %}
+		{% endfor %}
 	</div>
 {% endblock pagina %}
