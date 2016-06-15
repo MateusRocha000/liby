@@ -17,7 +17,13 @@
 					<h6>{{ usuario.cidade }}</h6>
 				</div>
 			</a>
-			<a href="/usuarios/seguir/{{ usuario.id }}" class="btn btn-default btn-block">Seguir</a>
+			{% if usuario != request.user.perfil %}
+				{% if usuario in request.user.perfil.seguindo.all %}
+					<a href="/usuarios/deixardeseguir/{{ usuario.id }}" class="btn btn-primary btn-block seguir"><span>Seguindo</span></a>
+				{% else %}
+					<a href="/usuarios/seguir/{{ usuario.id }}" class="btn btn-default btn-block"><span>Seguir</span></a>
+				{% endif %}
+			{% endif %}
 		</div>
 	</div>
 	<h3 class="page-header">

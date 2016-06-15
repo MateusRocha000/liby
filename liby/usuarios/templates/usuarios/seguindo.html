@@ -9,7 +9,7 @@
 		Seguindo
 	</h3>
 	<div class="row">
-		{% for usuario in user.perfil.seguindo %}
+		{% for usuario in user.perfil.seguindo.all %}
 			<div class="col-sm-3">
 				<a href="/usuarios/{{ usuario.id }}" class="usuario">
 					<img src="{{ usuario.foto }}" alt="">
@@ -18,7 +18,6 @@
 						<h6>{{ usuario.cidade }}</h6>
 					</div>
 				</a>
-				<a href="/usuarios/seguir/{{ usuario.id }}" class="btn btn-default btn-block">Seguir</a>
 			</div>
 		{% endfor %}
 	</div>

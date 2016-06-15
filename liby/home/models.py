@@ -6,7 +6,7 @@ class Perfil(models.Model):
 	nome  = models.CharField(max_length=100)
 	foto  = models.CharField(max_length=100)
 	cidade = models.CharField(max_length=50)
-	seguindo = models.ManyToManyField("self", related_name='seguidores')
+	seguindo = models.ManyToManyField("self", symmetrical=False, related_name='seguidores', blank=True)
 
 	def __str__(self):
 		return self.nome

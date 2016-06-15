@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Seguidores
+{% endblock title %}
+
+{% block pagina %}
+	<h3 class="page-header">
+		Seguidores
+	</h3>
+	<div class="row">
+		{% for usuario in user.perfil.seguidores.all %}
+			<div class="col-sm-3">
+				<a href="/usuarios/{{ usuario.id }}" class="usuario">
+					<img src="{{ usuario.foto }}" alt="">
+					<div>
+						<h5>{{ usuario.nome }}</h5>
+						<h6>{{ usuario.cidade }}</h6>
+					</div>
+				</a>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock pagina %}

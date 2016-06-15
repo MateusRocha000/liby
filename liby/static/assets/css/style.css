@@ -206,3 +206,17 @@ body {
 
 /*Troca*/
 
+/*Seguir*/
+.seguir:hover span {
+  display: none;
+}
+
+.seguir:hover{
+	background-color: #d9534f;
+	border-color: #d43f3a;	
+}
+
+.seguir:hover:after {
+  content: 'Deixar de seguir';
+  
+}
