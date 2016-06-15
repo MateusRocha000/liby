@@ -55,3 +55,19 @@ def nova(request, usuario_id, livro_id):
 		t.livro_2 = l1
 		t.save()
 		return redirect('/trocas/' + str(t.id))
+
+@login_required
+def selecionar(request, troca_id, livro_id):
+	p1 = request.user.perfil
+	t = Troca.objects.get(id=troca_id)
+
+	if t.perfil_1 == p1:
+		t.livro_1 = Livro.objects.get(id=livro_id)
+
+	if t.perfil_2 == p1:
+		t.livro_2 = Livro.objects.get(id=livro_id)
+
+	t.save()			
+			
+	return redirect('/trocas/' + troca_id)
+
